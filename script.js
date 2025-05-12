@@ -1,33 +1,32 @@
-const romanMap ={
-
-0: ['M',1000],
-1: ['CM',900],
-2: ['D',500],
-3: ['CD',400],
-4: ['c',100],
-5: ['xc',90],
-6: ['l',50],
-7: ['xl',40],
-8: ['x',10],
-9: ['lx',9],
-10: ['v',5],
-11: ['IV',4],
-12: ['I',1]
-
-};
-let n=798;
-let ans=""
-while(n!=0)
-  {
-    for(let i in romanMap)
-       {
-         let value=romanMap[i][0];
-         let num=romanMap[i][1]
-         if(num<=n)
-           {
-             ans=ans+value;
-             n=n-num;
-             break;
-           }
-       }
+function integerToRoman(num) {
+  if (typeof num !== 'number' || num <= 0 || num >= 4000) {
+    return 'Invalid number';
   }
+
+  const romanMap = [
+    { value: 1000, symbol: 'M' },
+    { value: 900,  symbol: 'CM' },
+    { value: 500,  symbol: 'D' },
+    { value: 400,  symbol: 'CD' },
+    { value: 100,  symbol: 'C' },
+    { value: 90,   symbol: 'XC' },
+    { value: 50,   symbol: 'L' },
+    { value: 40,   symbol: 'XL' },
+    { value: 10,   symbol: 'X' },
+    { value: 9,    symbol: 'IX' },
+    { value: 5,    symbol: 'V' },
+    { value: 4,    symbol: 'IV' },
+    { value: 1,    symbol: 'I' }
+  ];
+
+  let result = '';
+
+  for (const { value, symbol } of romanMap) {
+    while (num >= value) {
+      result += symbol;
+      num -= value;
+    }
+  }
+
+  return result;
+}
